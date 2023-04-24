@@ -1,6 +1,12 @@
+import random
+
 from pokemon import *
 
 
+lista_nomes = ['Luan', 'Jorge', 'Carlos', 'Maria', 'Julia', 'Fernanda']
+lista_pokemons = [PokemonAgua('Squirtle'),
+                  PokemonEletrico('Pikachu'),
+                  PokemonFogo('Charmander')]
 
 class Pessoa:
 
@@ -9,11 +15,12 @@ class Pessoa:
         if nome:
             self.nome = nome
         else:
-            self.nome = 'Anonimo'
+            self.nome = random.choice(lista_nomes)
         
         self.pokemons = pokemons
     
     def __str__(self):
+        
         return self.nome
 
     def mostrar_pokemons(self):
@@ -43,13 +50,27 @@ class Inimigo(Pessoa):
 
     tipo = 'inimigo'
 
-pokemon_1 = PokemonEletrico('pikachu')
+    def __init__(self, nome=None, pokemons=[]):
 
-eu = Player('Lucas', [pokemon_1])
+        if not pokemons:
+            
+            for pokemons_sorteados in range(random.randint(1, 2)):
+                
+                pokemons.append(random.choice(lista_pokemons))
+        
+        super().__init__(nome=nome, pokemons=pokemons)
 
-pokemon_selvagem = PokemonFogo('charmander')
+meu_inimigo = Inimigo()
 
-eu.mostrar_pokemons()
+print(meu_inimigo)
+meu_inimigo.mostrar_pokemons()
+
+meu_pok = PokemonFogo('charmander')
+
+
+
+
+
 
 
 
